@@ -11,7 +11,7 @@ __all__ = (
 )
 
 
-class CustomUUID(postgresql.UUID):
+class CustomUUID(postgresql.UUID):  # pylint:disable=abstract-method
     """
     Postgres compatible UUID
     """

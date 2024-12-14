@@ -9,6 +9,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    """
+    Application settings
+    """
+
     PROJECT_NAME: str = "technical-test"
     VERSION: str = "0.2.0"
     POSTGRES_SERVER: str
@@ -22,6 +26,9 @@ class Settings(BaseSettings):
     @field_validator("SQLALCHEMY_DATABASE_URI", mode="before")
     @classmethod
     def assemble_db_connection(cls, v: Optional[str], values: ValidationInfo) -> Any:
+        """
+        Build dsn from settings
+        """
         if isinstance(v, str):
             return v
 
