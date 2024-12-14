@@ -30,3 +30,8 @@ migrate-db:
 .PHONY: autogenerate-migration
 autogenerate-migration:
 	$(CONTAINER_EXECUTOR) alembic revision --autogenerate -m $(revision_message)
+
+
+.PHONY: install-hooks
+install-hooks:
+	poetry install && poetry run pre-commit install && poetry run pre-commit run --all-files
