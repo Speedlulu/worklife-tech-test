@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from ...db.session import get_db
 from ...repository.employee import EmployeeRepository
-from ...schema.employee import EmployeeSchema
+from ...schema.employee import EmployeeSchema, EmployeeCreateSchema
 
 
 router = APIRouter(prefix="/employee", tags=["Employee"])
@@ -31,3 +31,13 @@ def get_employee(
 
     return employee
 
+
+@router.post("", status_code=HTTPStatus.CREATED)
+def create_employee(
+    employee: EmployeeCreateSchema,
+    session: Session = Depends(get_db),
+) -> EmployeeSchema:
+    """
+    Create an employee
+    """
+    return EmployeeRepository.create(session, employee)

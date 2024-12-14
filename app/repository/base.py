@@ -11,9 +11,10 @@ __all__ = ("BaseRepository",)
 
 
 Schema = TypeVar("Schema", bound=BaseSchema)
+Model = TypeVar("Model", bound=BaseModel)
 
 
-class BaseRepository(Generic[Schema], ABC):
+class BaseRepository(Generic[Schema, Model], ABC):
     """
     Generic base class for all repositories
     To get full typing functionnaly define inheriting class like so
@@ -46,3 +47,11 @@ class BaseRepository(Generic[Schema], ABC):
             for model in self._query(session, **kwargs).all()
         ]
 
+    @abstractmethod
+    def create(self, session: Session, obj_in: Model) -> Schema:
+        """
+        Insert a new object in db
+        """
+        session.add(obj_in)
+        session.commit()
+        return self.schema.model_validate(obj_in)
