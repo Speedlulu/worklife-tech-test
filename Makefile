@@ -29,7 +29,7 @@ migrate-db:
 
 .PHONY: autogenerate-migration
 autogenerate-migration:
-	$(CONTAINER_EXECUTOR) alembic revision --autogenerate -m $(revision_message)
+	$(CONTAINER_EXECUTOR) alembic revision --autogenerate -m $(revision_message) && sudo chown $$USER:$$USER app/alembic -R
 
 
 .PHONY: install-hooks
