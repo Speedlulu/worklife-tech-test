@@ -19,11 +19,17 @@ class _EmployeeRepository(BaseRepository[EmployeeSchema, EmployeeModel]):
         """
         return self.get(session, id=employee_id)
 
-    def create(self, session, obj_in: EmployeeCreateSchema):
-        return super().create(session, self.model(**obj_in.model_dump()))
+    def create_or_update(
+        self,
+        session,
+        schema_in: EmployeeCreateSchema | None = None,
+        **kwargs,
+    ):
+        return super().create_or_update(session, schema_in, **kwargs)
 
 
 EmployeeRepository = _EmployeeRepository(
     model=EmployeeModel,
     schema=EmployeeSchema,
+    update_schema=EmployeeCreateSchema,
 )

@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 from .base import BaseSchema
+from ..model.team import TeamModel
 
 
 __all__ = (
@@ -13,7 +14,7 @@ class _TeamBaseSchema:
     name: str
 
 
-class TeamSchema(BaseSchema, _TeamBaseSchema):
+class TeamSchema(BaseSchema[TeamModel], _TeamBaseSchema):
     """
     Team schema
     """

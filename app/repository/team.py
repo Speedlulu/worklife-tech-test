@@ -19,11 +19,17 @@ class _TeamRepository(BaseRepository[TeamSchema, TeamModel]):
         """
         return self.get(session, id=team_id)
 
-    def create(self, session, obj_in: TeamCreateSchema):
-        return super().create(session, self.model(**obj_in.model_dump()))
+    def create_or_update(
+        self,
+        session,
+        schema_in: TeamCreateSchema | None = None,
+        **kwargs,
+    ):
+        return super().create_or_update(session, schema_in, **kwargs)
 
 
 TeamRepository = _TeamRepository(
     model=TeamModel,
     schema=TeamSchema,
+    update_schema=TeamCreateSchema,
 )

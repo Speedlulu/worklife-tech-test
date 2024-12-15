@@ -1,6 +1,7 @@
 from pydantic import BaseModel, UUID4
 
 from .base import BaseSchema
+from ..model.employee import EmployeeModel
 
 
 __all__ = (
@@ -15,7 +16,7 @@ class _EmployeeBaseSchema:
     team_id: UUID4
 
 
-class EmployeeSchema(BaseSchema, _EmployeeBaseSchema):
+class EmployeeSchema(BaseSchema[EmployeeModel], _EmployeeBaseSchema):
     """
     Employee schema
     """

@@ -2,10 +2,13 @@ from http import HTTPStatus
 from uuid import UUID
 
 from fastapi import Depends, APIRouter, HTTPException
+from fastapi.exceptions import RequestValidationError
+from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
 from ...db.session import get_db
 from ...repository.employee import EmployeeRepository
+from ...schema.base import ArbitraryJsonDict
 from ...schema.employee import EmployeeSchema, EmployeeCreateSchema
 
 
@@ -40,4 +43,27 @@ def create_employee(
     """
     Create an employee
     """
-    return EmployeeRepository.create(session, employee)
+    return EmployeeRepository.create_or_update(session, employee)
+
+
+@router.patch("/{employee_id}")
+def update_employee(
+    update_data: ArbitraryJsonDict,
+    session: Session = Depends(get_db),
+    *,
+    employee_id: UUID,
+) -> EmployeeSchema:
+    """
+    Update employee
+    """
+    employee = get_employee(session, employee_id=employee_id)
+    try:
+        return EmployeeRepository.update(
+            session,
+            employee._model,  # pylint:disable=protected-access
+            update_data.model_dump(),
+        )
+    except* ValidationError as excg:
+        raise RequestValidationError(
+            [err for exc in excg.exceptions for err in exc.errors()],
+        ) from excg
