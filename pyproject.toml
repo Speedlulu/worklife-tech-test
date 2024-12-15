@@ -34,6 +34,7 @@ target-version = 'py311'
 "app/model/__init__.py" = ["F403"]
 "app/schema/__init__.py" = ["F403"]
 "app/repository/__init__.py" = ["F403"]
+"app/domain/__init__.py" = ["F403"]
 
 
 [tool.pylint.REPORTS]

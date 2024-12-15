@@ -2,14 +2,12 @@ from http import HTTPStatus
 from uuid import UUID
 
 from fastapi import Depends, APIRouter, HTTPException
-from fastapi.exceptions import RequestValidationError
-from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
 from ...db.session import get_db
+from ...domain.team import update_team as domain_update_team
 from ...repository.team import TeamRepository
-from ...schema.base import ArbitraryJsonDict
-from ...schema.team import TeamSchema, TeamCreateSchema
+from ...schema.team import TeamSchema, TeamCreateSchema, TeamUpdateSchema
 
 
 router = APIRouter(prefix="/team", tags=["Team"])
@@ -43,12 +41,12 @@ def create_team(
     """
     Create a team
     """
-    return TeamRepository.create_or_update(session, team)
+    return TeamRepository.create(session, team)
 
 
 @router.patch("/{team_id}")
-def update_employee(
-    update_data: ArbitraryJsonDict,
+def update_team(
+    update_data: TeamUpdateSchema,
     session: Session = Depends(get_db),
     *,
     team_id: UUID,
@@ -56,14 +54,5 @@ def update_employee(
     """
     Update employee
     """
-    employee = get_team(session, team_id=team_id)
-    try:
-        return TeamRepository.update(
-            session,
-            employee._model,  # pylint:disable=protected-access
-            update_data.model_dump(),
-        )
-    except* ValidationError as excg:
-        raise RequestValidationError(
-            [err for exc in excg.exceptions for err in exc.errors()],
-        ) from excg
+    team = get_team(session, team_id=team_id)
+    return domain_update_team(session, team, update_data)

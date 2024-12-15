@@ -2,7 +2,7 @@ from uuid import UUID
 
 from ..model import EmployeeModel
 from ..repository.base import BaseRepository
-from ..schema.employee import EmployeeSchema, EmployeeCreateSchema
+from ..schema.employee import EmployeeSchema, EmployeeCreateSchema, EmployeeUpdateSchema
 
 
 __all__ = ("EmployeeRepository",)
@@ -19,17 +19,17 @@ class _EmployeeRepository(BaseRepository[EmployeeSchema, EmployeeModel]):
         """
         return self.get(session, id=employee_id)
 
-    def create_or_update(
+    def create(
         self,
         session,
-        schema_in: EmployeeCreateSchema | None = None,
+        schema_in: EmployeeCreateSchema,
         **kwargs,
     ):
-        return super().create_or_update(session, schema_in, **kwargs)
+        return super().create(session, schema_in, **kwargs)
 
 
 EmployeeRepository = _EmployeeRepository(
     model=EmployeeModel,
     schema=EmployeeSchema,
-    update_schema=EmployeeCreateSchema,
+    update_schema=EmployeeUpdateSchema,
 )

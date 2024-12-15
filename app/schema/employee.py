@@ -7,6 +7,7 @@ from ..model.employee import EmployeeModel
 __all__ = (
     "EmployeeSchema",
     "EmployeeCreateSchema",
+    "EmployeeUpdateSchema",
 )
 
 
@@ -26,3 +27,13 @@ class EmployeeCreateSchema(BaseModel, _EmployeeBaseSchema):
     """
     Employee creation schema
     """
+
+
+class EmployeeUpdateSchema(BaseModel):
+    """
+    Employee update schema
+    """
+
+    first_name: str = None
+    last_name: str = None
+    team_id: UUID4 = None
