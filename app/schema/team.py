@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 from .base import BaseSchema
+from .employee import EmployeeSchema
 from ..model.team import TeamModel
 
 
@@ -18,6 +19,8 @@ class TeamSchema(BaseSchema[TeamModel], _TeamBaseSchema):
     """
     Team schema
     """
+
+    employees: list[EmployeeSchema]
 
 
 class TeamCreateSchema(BaseModel, _TeamBaseSchema):
