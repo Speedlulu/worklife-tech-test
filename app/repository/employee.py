@@ -2,7 +2,7 @@ from uuid import UUID
 
 from ..model import EmployeeModel
 from ..repository.base import BaseRepository
-from ..schema.employee import EmployeeSchema, EmployeeCreateSchema, EmployeeUpdateSchema
+from ..schema.employee import EmployeeCreateSchema, EmployeeSchema, EmployeeUpdateSchema
 
 
 __all__ = ("EmployeeRepository",)

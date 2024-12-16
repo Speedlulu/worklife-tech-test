@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from uuid import UUID
 
-from fastapi import Depends, APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ...db.session import get_db
@@ -11,13 +11,13 @@ from ...domain.vacation import new_vacation, update_vacation
 from ...repository.employee import EmployeeRepository
 from ...repository.vacation import VacationRepository
 from ...schema.employee import (
-    EmployeeSchema,
     EmployeeCreateSchema,
+    EmployeeSchema,
     EmployeeUpdateSchema,
 )
 from ...schema.vacation import (
-    VacationSchema,
     VacationCreateSchema,
+    VacationSchema,
     VacationUpdateSchema,
 )
 

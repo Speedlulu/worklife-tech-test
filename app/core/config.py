@@ -1,10 +1,6 @@
 from typing import Any, Optional, Union
-from pydantic import (
-    field_validator,
-    PostgresDsn,
-    ValidationInfo,
-)
 
+from pydantic import PostgresDsn, ValidationInfo, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

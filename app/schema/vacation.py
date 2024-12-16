@@ -1,11 +1,11 @@
 from datetime import date
 from typing import Annotated
 
-from pydantic import BaseModel, Field, UUID4, ValidationInfo, field_validator
+from pydantic import UUID4, BaseModel, Field, ValidationInfo, field_validator
 
+from ..model.vacation import VacationModel, VacationType
 from .base import BaseSchema, UpdateSchema
 from .employee import EmployeeSchema
-from ..model.vacation import VacationModel, VacationType
 
 
 __all__ = (

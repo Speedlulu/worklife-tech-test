@@ -6,8 +6,8 @@ Create Date: 2024-12-14 15:53:19.256506
 
 """
 
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 
 from app.model.base import CustomUUID
 

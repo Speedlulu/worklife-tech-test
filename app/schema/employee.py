@@ -1,7 +1,7 @@
-from pydantic import BaseModel, UUID4
+from pydantic import UUID4, BaseModel
 
-from .base import BaseSchema
 from ..model.employee import EmployeeModel
+from .base import BaseSchema
 
 
 __all__ = (

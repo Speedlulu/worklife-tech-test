@@ -1,6 +1,8 @@
 from typing import Generic, TypeVar
 
-from pydantic import BaseModel as PyBaseModel, ConfigDict, UUID4
+from pydantic import UUID4
+from pydantic import BaseModel as PyBaseModel
+from pydantic import ConfigDict
 
 from ..model import BaseModel
 

@@ -6,9 +6,9 @@ Create Date: 2024-12-14 23:40:57.429492
 
 """
 
+import sqlalchemy as sa
 from alembic import op
 from sqlalchemy import orm
-import sqlalchemy as sa
 
 from app.model.base import CustomUUID
 from app.model.team import TeamModel

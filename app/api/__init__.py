@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .routes import health, employee, team
+from .routes import employee, health, team
 
 
 def add_app_routes(app: FastAPI):

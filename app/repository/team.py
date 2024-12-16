@@ -2,7 +2,7 @@ from uuid import UUID
 
 from ..model.team import TeamModel
 from ..repository.base import BaseRepository
-from ..schema.team import TeamSchema, TeamCreateSchema, TeamUpdateSchema
+from ..schema.team import TeamCreateSchema, TeamSchema, TeamUpdateSchema
 
 
 __all__ = ("TeamRepository",)

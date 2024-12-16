@@ -25,6 +25,7 @@ pytest-cov = "^5.0.0"
 pytest-mock = "^3.14"
 ruff = "^0.8.3"
 pylint = "^3.3.2"
+isort = "^5.13.2"
 
 
 [tool.ruff]
@@ -47,3 +48,8 @@ disable = [
     "too-many-ancestors",
     "too-few-public-methods",
 ]
+
+
+[tool.isort]
+profile = "black"
+lines_after_imports = 2

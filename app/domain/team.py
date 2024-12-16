@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from ..schema.team import TeamSchema, TeamUpdateSchema
 from ..repository.team import TeamRepository
+from ..schema.team import TeamSchema, TeamUpdateSchema
 
 
 __all__ = ("update_team",)

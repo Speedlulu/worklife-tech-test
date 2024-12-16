@@ -3,9 +3,9 @@ from uuid import UUID
 from ..model.vacation import VacationModel
 from ..repository.base import BaseRepository
 from ..schema.vacation import (
-    VacationSchema,
     VacationCreateSchema,
     VacationInsertSchema,
+    VacationSchema,
     VacationUpdateSchema,
 )
 

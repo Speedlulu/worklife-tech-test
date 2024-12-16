@@ -1,10 +1,11 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy import ForeignKey
 import sqlalchemy as sa
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, relationship
 
 from .base import BaseModel, CustomUUID
+
 
 if TYPE_CHECKING:
     from .team import TeamModel

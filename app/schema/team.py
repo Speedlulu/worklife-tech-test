@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
+from ..model.team import TeamModel
 from .base import BaseSchema, UpdateSchema
 from .employee import EmployeeSchema
-from ..model.team import TeamModel
 
 
 __all__ = (

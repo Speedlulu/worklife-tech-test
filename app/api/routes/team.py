@@ -1,13 +1,13 @@
 from http import HTTPStatus
 from uuid import UUID
 
-from fastapi import Depends, APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ...db.session import get_db
 from ...domain.team import update_team as domain_update_team
 from ...repository.team import TeamRepository
-from ...schema.team import TeamSchema, TeamCreateSchema, TeamUpdateSchema
+from ...schema.team import TeamCreateSchema, TeamSchema, TeamUpdateSchema
 
 
 router = APIRouter(prefix="/team", tags=["Team"])
