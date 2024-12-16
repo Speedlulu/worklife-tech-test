@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     MONGODB_COLLECTION: str | None = None
     MONGODB_DSN: MongoDsn | str | None = None
 
+    ENABLE_SENTRY: bool = False
+    SENTRY_DSN: str | None = None
+
     model_config = SettingsConfigDict()
 
     @field_validator("SQLALCHEMY_DATABASE_URI", mode="before")
@@ -81,6 +84,24 @@ class Settings(BaseSettings):
             return v
 
         if not values.data.get("ENABLE_STATS", False):
+            return None
+
+        raise ValueError("Need to specify a value")
+
+    @field_validator("SENTRY_DSN", mode="after")
+    @classmethod
+    def _check_sentry_dsn(
+        cls,
+        v: str | None,
+        values: ValidationInfo,
+    ) -> str | None | MongoDsn:
+        """
+        Build dsn from settings
+        """
+        if isinstance(v, str):
+            return v
+
+        if not values.data.get("ENABLE_SENTRY", False):
             return None
 
         raise ValueError("Need to specify a value")
